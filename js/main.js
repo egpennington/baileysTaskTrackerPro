@@ -2,6 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
 import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
+
+// variables
 const appSettings = {
     databaseURL: "https://bailystasktrackerpro-default-rtdb.firebaseio.com/"
 }
@@ -11,14 +13,16 @@ const database = getDatabase(app)
 const tasksInDB = ref(database, "tasks")
 
 const addBtn = document.getElementById("add-button")
+const deleteBtn = document.getElementById("delete-button")
 const inputField = document.getElementById("input-field")
-const taskList = document.querySelector(".task-list")
+const taskList = document.getElementById("task-list")
+const errorMsg = document.getElementById("error-msg")
 
-// update database instantly
+// update database instantly from firebase
 onValue(tasksInDB, function(snapshot) {
 
     if (snapshot.exists()) {        
-        let tasksArray = Object.entries(snapshot.val())
+        let tasksArray = Object.entries(snapshot.val()).reverse()
 
         clearTasksListLIs()
     
@@ -35,12 +39,37 @@ onValue(tasksInDB, function(snapshot) {
     }    
 })
 
+// event listeners, where the magic happens
+// addBtn.addEventListener("click", () => {
+//     let inputValue = inputField.value
+//     push(tasksInDB, inputField.value)
+//     clearInputField()
+// })
+
 addBtn.addEventListener("click", () => {
     let inputValue = inputField.value
-    push(tasksInDB, inputField.value)
-    clearInputField()
+
+    if(inputValue.trim() === "") {        
+        console.log("Please enter a task")
+        errorMsg.innerText = "Enter a task"
+        errorMsg.classList.remove("error")
+        errorMsg.classList.add("errorDisplay")
+        
+        setTimeout(() => {
+            errorMsg.textContent = ""
+            errorMsg.classList.add("error")
+            
+        }, 2000)
+        
+    } else {
+        // errorMsg.textContent = ""       
+
+        push(tasksInDB, inputField.value)
+        clearInputField()        
+    }     
 })
 
+// functions
 function clearInputField() {
     inputField.value = ""
 }
@@ -57,7 +86,7 @@ function addItemToTaskList(task) {
     let newEl = document.createElement("li")
     newEl.textContent = taskValue
 
-    newEl.addEventListener("dblclick", ()=> {
+    deleteBtn.addEventListener("dblclick", ()=> {
         let exactLocationOfTaskInDB = ref(database, `tasks/${taskID}`)
         remove(exactLocationOfTaskInDB)
 
@@ -66,14 +95,12 @@ function addItemToTaskList(task) {
     taskList.append(newEl)
 }
 
-
-// function toggleTaskDoneClass() {
-//     element.classList.toggle("task-done");
-// }
-
-// taskList.addEventListener("click", () => {
-//     ul.classList.toggle("task-done")
-
-// })
+taskList.addEventListener("click", function(event) {
+    
+    if (event.target.tagName === "LI") {
+       
+        event.target.classList.toggle("task-done");
+    }
+})
 
 // 우유
