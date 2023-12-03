@@ -1,11 +1,13 @@
 :root {
-    --primary-bg-color: #fff;       /* Light background color */
-    --secondary-bg-color: #2e2f35;  /* Darker background color for secondary elements */
-    --accent-color: #6aa146;        /* Accent color for highlights and CTAs (green) */
-    --text-color: #2e2f35;          /* Dark text color */
-    --white-color: #fff;            /* White color for text and icons */
-    --main-content-color: #ddd6d3;  /* Main content background color */
-    --hover-color: #dad6d3;         /* Hover color for interactive elements */
+    --primary-bg-color: #fff;
+    --secondary-bg-color: #2e2f35;
+    --accent-color: #6aa146;
+    --text-color: #2e2f35;
+    --white-color: #fff;  
+    --main-content-color: #ddd6d3;
+    --hover-color: #dad6d3;
+    --red-color: #d11a2a;
+    --input-txt-color: #b4b4b4;
 }
 
 body {
@@ -25,6 +27,13 @@ h1 {
 
 .txt-hl {
     color: var(--accent-color);
+}
+
+.txt-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 ul {
@@ -61,8 +70,12 @@ img {
     margin: 0 auto;
 }
 
+::placeholder {
+    color: var(--input-txt-color);
+}
+
 input {
-    color: var(--text-color);
+    color: var(--input-txt-color);
     background-color: #fff;
     border: 1px solid var(--accent-color);
     padding: 15px;
@@ -88,6 +101,20 @@ button:hover {
     background: #5C8136; /* Slightly darker shade on hover for accent color */
     cursor: pointer;
     opacity: 0.9;
+}
+
+.redBtn {
+    background: var(--red-color);
+}
+
+.error {
+    display: none;
+}
+
+.errorDisplay {
+    color: var(--red-color);
+    font-size: 1.2rem;
+    font-style: bold;
 }
 
 .task-done {
