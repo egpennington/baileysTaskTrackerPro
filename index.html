@@ -19,13 +19,14 @@
         <div class="container">
             <img src="/images/bulldogLogo.png" alt="shadow of English bulldog logo">
             <h1 class="logo"><span class="txt-hl">Bailey's</span> Task Tracker<span class="txt-sm txt-hl">PRO</span> <i class="fa-solid fa-check"></i></h1>
-            <input type="text" id="input-field" placeholder="Wash dishes">
+            <input type="text" id="input-field" placeholder="enter task">
             <button id="add-button"><i class="fa-solid fa-plus"></i></button>
-            <ul class="task-list">
+            <button id="delete-button" class="redBtn txt-col"><i class="fa-solid fa-trash"></i> <span class="txt-sm">all</span></button>
+            <p id="error-msg" class="error"></p>
+            <ul id="task-list" class="task-list">
             </ul>
         </div>
         <script src="/js/maths.js" type="module"></script>
         <script src="/js/main.js" type="module"></script>
     </body>
 </html>
-
