@@ -15,8 +15,27 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
     </head>
-    <body>
+    <body>    
+      <nav class="main-nav" id="top">            
+        <ul class="main-menu">
+          <li>
+            Input task then Click on <i class="fa-solid fa-plus txt-hl"></i> to add a task
+          </li>
+          <li>
+            Double Click on <i class="fa-solid fa-trash txt-hl-red"></i> to delete ALL tasks
+          </li>
+          
+          <li>
+            Click on indiviual tasks to mark off tasks: <span class="txt-s">wash dishes</span>
+          </li>         
+        </ul>    
+      </nav>        
+        
         <div class="container">
+            <div class="menu-btn">
+              <i class="fa-solid fa-circle-info i-about" aria-label="Information"></i>
+              <span class="hidden">About</span>
+            </div>
             <img src="/images/bulldogLogo.png" alt="shadow of English bulldog logo">
             <h1 class="logo"><span class="txt-hl">Bailey's</span> Task Tracker<span class="txt-sm txt-hl">PRO</span> <i class="fa-solid fa-check"></i></h1>
             <input type="text" id="input-field" placeholder="enter task">
